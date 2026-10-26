@@ -1,0 +1,22 @@
+package: community.lazycat.app.listmonk
+version: 6.2.0
+name: listmonk
+description: High-performance self-hosted newsletter and mailing list manager with a modern dashboard
+min_os_version: 1.5.0
+homepage: https://github.com/knadh/listmonk
+author: knadh
+license: AGPL-3.0
+locales:
+  zh:
+    name: listmonk
+    description: 高性能自托管邮件订阅与邮件列表管理系统，配备现代化控制台
+  zh_CN:
+    name: listmonk
+    description: 高性能自托管邮件订阅与邮件列表管理系统，配备现代化控制台
+  en:
+    name: listmonk
+    description: High-performance self-hosted newsletter and mailing list manager with a modern dashboard
+unsupported_platforms:
+  - ios
+  - android
+  - tvos

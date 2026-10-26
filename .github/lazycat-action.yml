@@ -1,0 +1,46 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/listmonk.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: listmonk
+
+build:
+  toolchains: []
+  run_buildscript: false
+
+images:
+  - id: listmonk
+    target: service
+    service: listmonk-app
+    source: docker.io/listmonk/listmonk
+    channel: stable
+    sort: semver
+    # Stable three-part release tags only; excludes v7.0.0-beta.x, nightly,
+    # beta and the per-architecture variants.
+    tag_regex: ^v[0-9]+[.][0-9]+[.][0-9]+$
+    delivery:
+      mode: mirror
+      image_template: "docker.1ms.run/listmonk/listmonk:{tag}"
+      require_digest_match: true
+
+stores:
+  official:
+    enabled: false
+    skip_if_version_exists: false
+    retry:
+      enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: listmonk
+    summary: 镜像加速模式自动跟上游 Docker Hub 版本发布的高性能自托管邮件订阅系统
