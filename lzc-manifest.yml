@@ -16,10 +16,10 @@ application:
           params:
             user: "{{ .U.admin_user }}"
             password: "{{ .U.admin_password }}"
-
 services:
   listmonk-app:
     # listmonk/listmonk:v6.2.0
+    # upstream: docker.io/listmonk/listmonk:v6.2.0
     image: docker.1ms.run/listmonk/listmonk:v6.2.0
     environment:
       - LISTMONK_app__address=0.0.0.0:9000
@@ -41,7 +41,6 @@ services:
       - /lzcapp/var/uploads:/listmonk/uploads
     depends_on:
       - db
-
   db:
     image: postgres:17-alpine
     environment:
